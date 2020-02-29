@@ -2,7 +2,7 @@ false - Magdalena Anna - dyrektor
 false - Andrzej Frańczak - dyrektor
 false - Elżbieta Pieniek - kierowca
 false - Jerzy Rzędowski - handlowiec
-true - Małgorzata Fido - kierowca
+false - Małgorzata Fido - kierowca
 true - Mariusz Brun - kierowca
 false - Renata Morawska - handlowiec
 false - Agnieszka Karczmarczyk - handlowiec

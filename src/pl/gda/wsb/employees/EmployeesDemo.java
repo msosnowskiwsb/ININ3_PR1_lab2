@@ -15,11 +15,11 @@ public class EmployeesDemo {
     static String companyName = "WSB Gdańsk";
     static String fileName = System.getProperty("user.dir") + "\\utils\\db.txt";
 
+    static ArrayList<String> employees = new ArrayList<>();
+    static ArrayList<String> loggedEmployees = new ArrayList<>();
+
     public static void main(String[] args) {
         String operatorName = args[0];
-
-        ArrayList<String> employees = new ArrayList<>();
-        ArrayList<String> loggedEmployees = new ArrayList<>();
 
         Scanner fileScanner = getFileScanner();
         if (fileScanner == null) return;
@@ -120,5 +120,13 @@ public class EmployeesDemo {
             return null;
         }
         return fileScanner;
+    }
+
+    private static ArrayList<String> getEmployees(Boolean onlyLogged){
+        return onlyLogged ? loggedEmployees : employees;
+    }
+
+    private static ArrayList<String> getEmployees(){
+        return employees;
     }
 }
