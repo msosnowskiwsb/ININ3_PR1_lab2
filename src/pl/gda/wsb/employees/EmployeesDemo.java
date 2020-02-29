@@ -43,16 +43,16 @@ public class EmployeesDemo {
                 .append("Aktualna data: ").append(new Date()).append("\n");
         System.out.println(stringBuilder);
 
-        if (employees.size() == 0) {
+        if (getEmployees().size() == 0) {
             System.out.println("Brak pracowników.");
         } else {
-            System.out.println("Liczba pracowników: " + employees.size());
+            System.out.println("Liczba pracowników: " + getEmployees().size());
         }
 
-        if (loggedEmployees.size() > 0) {
+        if (getEmployees(true).size() > 0) {
             System.out.println("Zalogowani użytkownicy: ");
             int i = 0;
-            for (String employee : loggedEmployees) {
+            for (String employee : getEmployees(true)) {
                 if (i == 5) {
                     System.out.println("...");
                     break;
@@ -75,7 +75,7 @@ public class EmployeesDemo {
                 FileWriter fw = null;
                 try {
                     fw = new FileWriter(fileName, false);
-                    for (String employee : employees) {
+                    for (String employee : getEmployees()) {
                         fw.write(employee + "\n");
                     }
                     fw.close();
@@ -89,13 +89,13 @@ public class EmployeesDemo {
             boolean searched = false;
             Pattern patternSearch = Pattern.compile("^(true|false) - " + text + " - (.+)$");
 
-            for (String employee : employees) {
+            for (String employee : getEmployees()) {
                 Matcher matcher = patternSearch.matcher(employee);
                 if (matcher.matches()) {
                     searched = true;
                     boolean isLogged = Boolean.parseBoolean(matcher.group(1));
-                    employees.remove(i);
-                    employees.add(i, employee.replace(matcher.group(1), isLogged ? "false" : "true"));
+                    getEmployees().remove(i);
+                    getEmployees().add(i, employee.replace(matcher.group(1), isLogged ? "false" : "true"));
                     break;
                 }
                 i++;

@@ -3,7 +3,7 @@ false - Andrzej Frańczak - dyrektor
 false - Elżbieta Pieniek - kierowca
 false - Jerzy Rzędowski - handlowiec
 false - Małgorzata Fido - kierowca
-true - Mariusz Brun - kierowca
+false - Mariusz Brun - kierowca
 false - Renata Morawska - handlowiec
 false - Agnieszka Karczmarczyk - handlowiec
 false - Jolanta Midek - kierowca
