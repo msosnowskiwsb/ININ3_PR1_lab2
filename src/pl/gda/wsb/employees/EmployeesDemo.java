@@ -36,12 +36,7 @@ public class EmployeesDemo {
             }
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder
-                .append(companyName).append("\n")
-                .append("Hello ").append(getOperatorName()).append("\n")
-                .append("Aktualna data: ").append(new Date()).append("\n");
-        System.out.println(stringBuilder);
+        printWelcomeText();
 
         if (getEmployees().size() == 0) {
             System.out.println("Brak pracowników.");
@@ -108,6 +103,15 @@ public class EmployeesDemo {
             }
         }
 
+    }
+
+    private static void printWelcomeText() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder
+                .append(companyName).append("\n")
+                .append("Hello ").append(getOperatorName()).append("\n")
+                .append("Aktualna data: ").append(new Date()).append("\n");
+        System.out.println(stringBuilder);
     }
 
     private static Scanner getFileScanner() {
