@@ -38,24 +38,10 @@ public class EmployeesDemo {
 
         printWelcomeText();
 
-        if (getEmployees().size() == 0) {
-            System.out.println("Brak pracowników.");
-        } else {
-            System.out.println("Liczba pracowników: " + getEmployees().size());
-        }
+        printEmployees();
 
-        if (getEmployees(true).size() > 0) {
-            System.out.println("Zalogowani użytkownicy: ");
-            int i = 0;
-            for (String employee : getEmployees(true)) {
-                if (i == 5) {
-                    System.out.println("...");
-                    break;
-                }
-                i++;
-                System.out.println(employee);
-            }
-        }
+        printLoggedEmployees();
+
 
         System.out.println("\nPodaj imię i nazwisko (exit = koniec): ");
         Scanner inScanner = new Scanner(System.in);
@@ -99,6 +85,41 @@ public class EmployeesDemo {
             }
         }
 
+    }
+
+    private static void printLoggedEmployees() {
+        if (getEmployees(true).size() > 0) {
+            System.out.println("Zalogowani użytkownicy: ");
+            int i = 0;
+            for (String employee : getEmployees(true)) {
+                if (i == 5) {
+                    System.out.println("...");
+                    break;
+                }
+                i++;
+                System.out.println(employee);
+            }
+        }
+    }
+
+    private static void printEmployees() {
+        if (getEmployees().size() == 0) {
+            System.out.println("Brak pracowników.");
+        } else {
+            System.out.println("Liczba pracowników: " + getEmployees().size());
+        }
+
+        if (getEmployees().size() > 0) {
+            int i = 0;
+            for (String employee : getEmployees()) {
+                if (i == 5) {
+                    System.out.println("...");
+                    break;
+                }
+                i++;
+                System.out.println(employee);
+            }
+        }
     }
 
     private static void printWelcomeText() {
