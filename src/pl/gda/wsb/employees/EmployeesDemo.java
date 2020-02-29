@@ -39,7 +39,7 @@ public class EmployeesDemo {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append(companyName).append("\n")
-                .append("Hello ").append(operatorName).append("\n")
+                .append("Hello ").append(getOperatorName()).append("\n")
                 .append("Aktualna data: ").append(new Date()).append("\n");
         System.out.println(stringBuilder);
 
@@ -128,5 +128,9 @@ public class EmployeesDemo {
 
     private static ArrayList<String> getEmployees(){
         return employees;
+    }
+
+    private static String getOperatorName(){
+        return "Mateusz";
     }
 }
