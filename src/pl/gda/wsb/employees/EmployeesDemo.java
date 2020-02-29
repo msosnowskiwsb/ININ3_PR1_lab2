@@ -57,10 +57,6 @@ public class EmployeesDemo {
             }
         }
 
-        /*
-        Poniższy kod został dopisany do pliku, który był tworzony na zajęciach.
-         */
-
         System.out.println("\nPodaj imię i nazwisko (exit = koniec): ");
         Scanner inScanner = new Scanner(System.in);
         while (inScanner.hasNextLine()) {
