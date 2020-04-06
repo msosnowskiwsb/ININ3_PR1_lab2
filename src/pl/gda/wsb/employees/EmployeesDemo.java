@@ -15,20 +15,14 @@ public class EmployeesDemo {
     static String companyName = "WSB Gdańsk";
     static String fileName = System.getProperty("user.dir") + "\\utils\\db.txt";
 
+    static ArrayList<String> employees = new ArrayList<>();
+    static ArrayList<String> loggedEmployees = new ArrayList<>();
+
     public static void main(String[] args) {
         String operatorName = args[0];
 
-        ArrayList<String> employees = new ArrayList<>();
-        ArrayList<String> loggedEmployees = new ArrayList<>();
-
-        File file = new File(fileName);
-        Scanner fileScanner = null;
-        try {
-            fileScanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Błąd pobrania pliku!");
-            return;
-        }
+        Scanner fileScanner = getFileScanner();
+        if (fileScanner == null) return;
 
         Pattern pattern = Pattern.compile("^(true|false) - (.+)$");
         while (fileScanner.hasNextLine()) {
@@ -42,52 +36,24 @@ public class EmployeesDemo {
             }
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder
-                .append(companyName).append("\n")
-                .append("Hello ").append(operatorName).append("\n")
-                .append("Aktualna data: ").append(new Date()).append("\n");
-        System.out.println(stringBuilder);
+        printWelcomeText();
 
-        if (employees.size() == 0) {
-            System.out.println("Brak pracowników.");
-        } else {
-            System.out.println("Liczba pracowników: " + employees.size());
-        }
+        printEmployees();
 
-        if (loggedEmployees.size() > 0) {
-            System.out.println("Zalogowani użytkownicy: ");
-            int i = 0;
-            for (String employee : loggedEmployees) {
-                if (i == 5) {
-                    System.out.println("...");
-                    break;
-                }
-                i++;
-                System.out.println(employee);
-            }
-        }
+        printLoggedEmployees();
 
-        /*
-        Poniższy kod został dopisany do pliku, który był tworzony na zajęciach.
-         */
+        readEmployeeNameAndChangeStatus();
 
+    }
+
+    private static void readEmployeeNameAndChangeStatus() {
         System.out.println("\nPodaj imię i nazwisko (exit = koniec): ");
         Scanner inScanner = new Scanner(System.in);
         while (inScanner.hasNextLine()) {
             String text = inScanner.nextLine();
             if (text.equals("exit")) {
 
-                FileWriter fw = null;
-                try {
-                    fw = new FileWriter(fileName, false);
-                    for (String employee : employees) {
-                        fw.write(employee + "\n");
-                    }
-                    fw.close();
-                } catch (IOException e) {
-                    System.out.println("Błąd zapisu pliku!");
-                }
+                saveToFile();
                 break;
             }
 
@@ -95,13 +61,13 @@ public class EmployeesDemo {
             boolean searched = false;
             Pattern patternSearch = Pattern.compile("^(true|false) - " + text + " - (.+)$");
 
-            for (String employee : employees) {
+            for (String employee : getEmployees()) {
                 Matcher matcher = patternSearch.matcher(employee);
                 if (matcher.matches()) {
                     searched = true;
                     boolean isLogged = Boolean.parseBoolean(matcher.group(1));
-                    employees.remove(i);
-                    employees.add(i, employee.replace(matcher.group(1), isLogged ? "false" : "true"));
+                    getEmployees().remove(i);
+                    getEmployees().add(i, employee.replace(matcher.group(1), isLogged ? "false" : "true"));
                     break;
                 }
                 i++;
@@ -113,6 +79,86 @@ public class EmployeesDemo {
                 System.out.println("Błędnie podane imię i nazwisko!");
             }
         }
+    }
 
+    private static void saveToFile() {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(fileName, false);
+            for (String employee : getEmployees()) {
+                fw.write(employee + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Błąd zapisu pliku!");
+        }
+    }
+
+    private static void printLoggedEmployees() {
+        if (getEmployees(true).size() > 0) {
+            System.out.println("Zalogowani użytkownicy: " + getEmployees(true).size());
+            int i = 0;
+            for (String employee : getEmployees(true)) {
+                if (i == 5) {
+                    System.out.println("...");
+                    break;
+                }
+                i++;
+                System.out.println(employee);
+            }
+        }
+    }
+
+    private static void printEmployees() {
+        if (getEmployees().size() == 0) {
+            System.out.println("Brak pracowników.");
+        } else {
+            System.out.println("Liczba pracowników: " + getEmployees().size());
+        }
+
+        if (getEmployees().size() > 0) {
+            int i = 0;
+            for (String employee : getEmployees()) {
+                if (i == 5) {
+                    System.out.println("...");
+                    break;
+                }
+                i++;
+                System.out.println(employee);
+            }
+        }
+    }
+
+    private static void printWelcomeText() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder
+                .append(companyName).append("\n")
+                .append("Hello ").append(getOperatorName()).append("\n")
+                .append("Aktualna data: ").append(new Date()).append("\n");
+        System.out.println(stringBuilder);
+    }
+
+    private static Scanner getFileScanner() {
+        File file = new File(fileName);
+        Scanner fileScanner = null;
+        try {
+            fileScanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Błąd pobrania pliku!");
+            return null;
+        }
+        return fileScanner;
+    }
+
+    private static ArrayList<String> getEmployees(Boolean onlyLogged){
+        return onlyLogged ? loggedEmployees : employees;
+    }
+
+    private static ArrayList<String> getEmployees(){
+        return employees;
+    }
+
+    private static String getOperatorName(){
+        return "Mateusz";
     }
 }
