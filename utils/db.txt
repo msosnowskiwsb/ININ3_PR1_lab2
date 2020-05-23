@@ -1,4 +1,4 @@
-false - Magdalena Anna - dyrektor
+true - Magdalena Anna - dyrektor
 true - Andrzej Frańczak - dyrektor
 false - Elżbieta Pieniek - kierowca
 false - Jerzy Rzędowski - handlowiec
@@ -12,7 +12,7 @@ false - Sylwia Raczyńska - handlowiec
 false - Jolanta Skrzypczak - kierowca
 false - Zbigniew Knap - dyrektor
 true - Małgorzata Januszewska - kierowca
-true - Sławomir Zwoliński - kierowca
+false - Sławomir Zwoliński - kierowca
 false - Tomasz Bystry - handlowiec
 false - Bożena Szybuk - kierowca
 false - Danuta Romańczak - handlowiec

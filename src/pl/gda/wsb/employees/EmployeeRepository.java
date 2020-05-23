@@ -10,9 +10,6 @@ import java.util.regex.Pattern;
 public class EmployeeRepository {
     DataBase dataBase = new DataBase();
 
-    private ArrayList<Employee> employees;
-    private ArrayList<Employee> loggedEmployess;
-
     void readEmployeeNameAndChangeStatus(ArrayList<Employee> employeeList) {
         System.out.println("\nPodaj imię i nazwisko (exit = koniec): ");
         Scanner inScanner = new Scanner(System.in);
