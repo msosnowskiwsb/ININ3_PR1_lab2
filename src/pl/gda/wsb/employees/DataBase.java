@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class DataBase {
     protected String fileName = System.getProperty("user.dir") + "\\utils\\db.txt";
 
-    protected void saveToFile(ArrayList<String> employeesListToSave) {
+    protected void saveToFile(ArrayList<Employee> employeesListToSave) {
         FileWriter fw = null;
         try {
             fw = new FileWriter(fileName, false);
-            for (String employee : employeesListToSave) {
-                fw.write(employee + "\n");
+            for (Employee employee : employeesListToSave) {
+                fw.write(employee.toString() + "\n");
             }
             fw.close();
         } catch (IOException e) {

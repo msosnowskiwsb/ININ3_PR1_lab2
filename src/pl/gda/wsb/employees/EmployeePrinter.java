@@ -1,5 +1,6 @@
 package pl.gda.wsb.employees;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static pl.gda.wsb.employees.EmployeesDemo.companyName;
@@ -8,22 +9,22 @@ public class EmployeePrinter {
 
     static EmployeeRepository employeeRepository = new EmployeeRepository();
 
-    static void printLoggedEmployees() {
+    static void printLoggedEmployees(ArrayList<Employee> loggedEmployees) {
         if (employeeRepository.getEmployees(true).size() > 0) {
             System.out.println("Zalogowani użytkownicy: " + employeeRepository.getEmployees(true).size());
             int i = 0;
-            for (String employee : employeeRepository.getEmployees(true)) {
+            for (Employee employee : employeeRepository.getEmployees(true)) {
                 if (i == 5) {
                     System.out.println("...");
                     break;
                 }
                 i++;
-                System.out.println(employee);
+                System.out.println(employee.toString());
             }
         }
     }
 
-    static void printEmployees() {
+    static void printEmployees(ArrayList<Employee> allEmployess) {
         if (employeeRepository.getEmployees().size() == 0) {
             System.out.println("Brak pracowników.");
         } else {
@@ -32,13 +33,13 @@ public class EmployeePrinter {
 
         if (employeeRepository.getEmployees().size() > 0) {
             int i = 0;
-            for (String employee : employeeRepository.getEmployees()) {
+            for (Employee employee : employeeRepository.getEmployees()) {
                 if (i == 5) {
                     System.out.println("...");
                     break;
                 }
                 i++;
-                System.out.println(employee);
+                System.out.println(employee.toString());
             }
         }
     }
