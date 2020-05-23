@@ -9,7 +9,7 @@ false - Agnieszka Karczmarczyk - handlowiec
 false - Jolanta Midek - kierowca
 false - Danuta Jeziorska - kierowca
 false - Sylwia Raczyńska - handlowiec
-true - Jolanta Skrzypczak - kierowca
+false - Jolanta Skrzypczak - kierowca
 false - Zbigniew Knap - dyrektor
 true - Małgorzata Januszewska - kierowca
 true - Sławomir Zwoliński - kierowca

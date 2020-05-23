@@ -9,8 +9,8 @@ public class EmployeesDemo {
 
     static String companyName = "WSB Gdańsk";
 
-    static ArrayList<String> employees = new ArrayList<>();
-    static ArrayList<String> loggedEmployees = new ArrayList<>();
+    static ArrayList<Employee> employees = new ArrayList<>();
+    static ArrayList<Employee> loggedEmployees = new ArrayList<>();
     private static DataBase dataBase;
     private static EmployeeRepository employeeRepository;
 
@@ -21,25 +21,32 @@ public class EmployeesDemo {
         Scanner fileScanner = dataBase.getFileScanner();
         if (fileScanner == null) return;
 
-        Pattern pattern = Pattern.compile("^(true|false) - (.+)$");
+        Pattern pattern = Pattern.compile("^(true|false) - (.+) - (.+)$");
         while (fileScanner.hasNextLine()) {
-            String employee = fileScanner.nextLine();
-            Matcher matcher = pattern.matcher(employee);
+            String line_from_file = fileScanner.nextLine();
+            Matcher matcher = pattern.matcher(line_from_file);
             if (matcher.matches()) {
+                Employee employee = new Employee(
+                        Boolean.parseBoolean(matcher.group(1)),
+                        matcher.group(2),
+                        matcher.group(3)
+                );
+                System.out.println(employee.toString());
+
                 employeeRepository.getEmployees().add(employee);
                 if (Boolean.parseBoolean(matcher.group(1))) {
-                    employeeRepository.getEmployees(true).add(matcher.group(2));
+                    employeeRepository.getEmployees(true).add(employee);
                 }
             }
         }
 
         EmployeePrinter.printWelcomeText();
 
-        EmployeePrinter.printEmployees();
+        EmployeePrinter.printEmployees(employeeRepository.getEmployees());
 
-        EmployeePrinter.printLoggedEmployees();
+        EmployeePrinter.printLoggedEmployees(employeeRepository.getEmployees(true));
 
-        employeeRepository.readEmployeeNameAndChangeStatus();
+        employeeRepository.readEmployeeNameAndChangeStatus(employeeRepository.getEmployees());
 
     }
 
