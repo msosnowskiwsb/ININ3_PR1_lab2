@@ -1,0 +1,7 @@
+package pl.gda.wsb.employees;
+
+public class WrongEmployee extends Exception{
+    public WrongEmployee(){
+        System.out.println("Nie znaleziono pracownika w bazie!\n\nProszę ponownie podać imię i nazwisko pracownika (exit = koniec):");
+    }
+}

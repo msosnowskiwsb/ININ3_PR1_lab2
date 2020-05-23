@@ -1,7 +1,7 @@
-true - Magdalena Anna - dyrektor
+false - Magdalena Anna - dyrektor
 true - Andrzej Frańczak - dyrektor
 false - Elżbieta Pieniek - kierowca
-false - Jerzy Rzędowski - handlowiec
+true - Jerzy Rzędowski - handlowiec
 false - Małgorzata Fido - kierowca
 false - Mariusz Brun - kierowca
 false - Renata Morawska - handlowiec
